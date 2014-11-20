@@ -1,18 +1,78 @@
 __author__ = 'john'
 from flask import Flask
+from flask import request, make_response
+from flask import  redirect
 
+#from web import app
+# from flask import current_app
 
 
 app = Flask(__name__)
 
+# current_app.name
+#
+# app_ctx = app.app_context()
+# app_ctx.push()
+# current_app.name
+
+@app.route('/facebook')
+
+def goto_facebook():
+
+    response = make_response(redirect('http://www.facebook.com'))
+
+    return response
+
+@app.route('/google')
+
+def goto_google():
+
+    response = make_response(redirect('http://www.google.com'))
+
+    return response
+
+@app.route('/yahoo')
+
+def goto_yahoo():
+
+    response = make_response(redirect('http://www.yahoo.com'))
+
+    return response
+
+@app.route('/igihe')
+
+def goto_igihe():
+
+    response = make_response(redirect('http://www.igihe.com'))
+
+    return response
+
+
+@app.route('/')
+
+def index1():
+
+    user_agent =request.headers.get('User_Agent')
+
+    response = make_response ( "<h2> The browser is %s</h2>" %user_agent)
+
+    return response
+
 @app.route('/kigali')
+
 def index():
-    return "I am in the capital of Rwanda"
+
+
+    response = make_response( "<h>I am in the capital of Rwanda</h>")
+
+    return response
 
 @app.route('/kuramutsa')
 
 def mwaramutse():
-    return "Mwaramutse mwese"
+    response = make_response("Mwaramutse mwese")
+
+    return response
 
 @app.route("/counter/<int:number>")
 
